@@ -1,0 +1,17 @@
+{
+	"name": "ensnared/pwgen",
+	"description": "Generate pronouncable random password",
+	"type": "library",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Roy W. Andersen",
+			"email": "ensnared@gmail.com"
+		}
+	],
+	"minimum-stability": "stable",
+	"require": {
+		"php": ">=7.4",
+		"ext-mbstring": "*"
+	}
+}
