@@ -1,64 +1,79 @@
 <?php
-namespace Ensnared;
 
-class Password {
+namespace Ensnared\Password;
 
+class PW {
 	/**
-	 * Single consonants to use
+	 * @var string[]
+	 * Consonants to use. Can include locale specific letters.
 	 */
-	private static $consonants = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'x','z');
+	private static $consonants = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'x', 'z');
 
 	/**
-	 * Vowels to use
+	 * @var string[]
+	 * Vowels to use. Can include locale specific letters.
 	 */
 	private static $vowels = array('a', 'e', 'i', 'o', 'u', 'y');
 
 	/**
-	 * Special characters to use
+	 * @var string[]
+	 * Special characters to use.
 	 */
 	private static $special = array('!', '@', '#', '$', '%', '*', '&', '*', '-', '+', '?');
 
 	/**
-	 * These characters will always be replaced. Case sensitive.
+	 * @var string[]
+	 * Map of characters that will always be replaced.
+	 * Case sensitive.
 	 */
 	private static $character_always_replace = array(
-		'O'=>'0'
+		'O' => '0'
 	);
 
 	/**
-	 * There's a self::$warp_chance % chance that these letters will be changed to the corresponding character
+	 * @var string[]
+	 * Map of characters that can be replaced.
+	 * The percentile chance of each instance being replaced is defined by $warp_chance
 	 */
 	private static $character_warp_map = array(
-		'a'=>'@',
-		'e'=>'3',
-		'i'=>'!',
-		'l'=>'|',
-		'o'=>'0',
-		's'=>'$',
-		't'=>'+',
-		'x'=>'%',
-		'7'=>'/'
+		'a' => '@',
+		'e' => '3',
+		'i' => '!',
+		'l' => '|',
+		'o' => '0',
+		's' => '$',
+		't' => '+',
+		'x' => '%',
+		'7' => '/'
 	);
 
 	/**
-	 * The percentile chance of characters being warped with self::$character_warp_map
+	 * @var int
+	 * The percentile chance of characters being warped using $character_warp_map
 	 */
 	private static $warp_chance = 75;
 
 	/**
-	 * Consonants that will have a self::$rare_consonants_chance % chance of being used
+	 * @var string[]
+	 * Consonants that will have a reduced chance of being used.
+	 * The chance of these being used is defined by $rare_consonants_chance
+	 * Set to NULL or an empty array to disable.
+	 * Will also be disabled if $rare_consonants_chance is set to 100.
 	 */
 	private static $rare_consonants = array('l', 'w', 'x', 'z');
 
 	/**
+	 * @var int
 	 * The percentile chance of rare consonants being used
+	 * If set to 100 this functionality will not be used.
 	 */
-	private static $rare_consonants_chance = 20;
+	private static $rare_consonants_chance = 30;
 
 	/**
-	 * Double consonants to use only if at the beginning of the password
+	 * @var string[]
+	 * Double consonants to use only at the beginning of a password
 	 */
-	private static $double_consonants = array(
+	private static $double_consonants_first = array(
 		'bl', 'br',
 		'cl', 'cr', 'cv',
 		'dr',
@@ -70,10 +85,11 @@ class Password {
 		'tj', 'tr', 'ts', 'tv', 'tw', 'tz',
 		'vl', 'vr',
 		'wl', 'wr',
-		'zk','zl', 'zm', 'zn', 'zp', 'zt', 'zv'
+		'zk', 'zl', 'zm', 'zn', 'zp', 'zt', 'zv'
 	);
 
 	/**
+	 * @var string[]
 	 * Double consonants to use only if previous letter is a vowel
 	 */
 	private static $double_consonants_postvowel = array(
@@ -81,7 +97,7 @@ class Password {
 		'dv',
 		'fk', 'fp', 'fs', 'ft',
 		'gs',
-		'lb', 'lc',  'ld', 'lf', 'lg', 'lk', 'lm', 'ln', 'lp', 'ls', 'lv', 'lw', 'lz',
+		'lb', 'lc', 'ld', 'lf', 'lg', 'lk', 'lm', 'ln', 'lp', 'ls', 'lv', 'lw', 'lz',
 		'md', 'mg', 'ml', 'mn', 'ms', 'mt', 'mx',
 		'nd', 'ng', 'nl', 'ns', 'nt', 'nx',
 		'pc', 'pk', 'px',
@@ -92,13 +108,15 @@ class Password {
 	);
 
 	/**
+	 * @var string[]
 	 * Double consonants to use anywhere
-	 * This simply combines self::$double_consonants and self::$double_consonants_postvowel
+	 * If null or empty, this will be populated by all entries from $double_consonants_first and $double_consonants_postvowel
 	 */
-	private static $double_consonants_any = array();
+	private static $double_consonants_any = null;
 
 	/**
-	 * @var int The number of words created
+	 * @var int
+	 * The number of words created
 	 */
 	private static $wordCount = 0;
 
@@ -109,14 +127,18 @@ class Password {
 
 	/**
 	 * Create a password
+	 *
+	 * @return string The generated pronounceable password.
 	 */
 	public static function create($minLength = 8, $maxLength = 12) {
-		self::$double_consonants_any = array_unique(array_merge(self::$double_consonants, self::$double_consonants_postvowel));
+		if (self::$double_consonants_any === null) {
+			self::$double_consonants_any = array_unique(array_merge(self::$double_consonants_first, self::$double_consonants_postvowel));
+		}
 		srand((double)microtime() * 1000000);
 
 		$length = rand($minLength, $maxLength);
 
-		while (mb_strlen(self::$password) < $length-2) {
+		while (mb_strlen(self::$password) < $length - 2) {
 			self::$password .= self::word();
 			self::$wordCount++;
 		}
@@ -144,7 +166,7 @@ class Password {
 		self::$password = implode('', $warpedPw);
 
 		if ($specialcount < 1) {
-			self::$password .= self::$special[rand(0, count(self::$special)-1)];
+			self::$password .= self::$special[rand(0, count(self::$special) - 1)];
 		}
 		self::$password .= rand(10, 99);
 
@@ -179,29 +201,38 @@ class Password {
 		return $word;
 	}
 
+	/**
+	 * Create a vowel, will randomly return a vowel from the defined list of vowels.
+	 *
+	 * @return string
+	 */
 	private static function vowel() {
-		return self::$vowels[rand(0, count(self::$vowels)-1)];
+		return self::$vowels[rand(0, count(self::$vowels) - 1)];
 	}
 
+	/**
+	 * Create a consonant, will randomly return a consonant or a double consonant.
+	 *
+	 * @return string
+	 */
 	private static function consonant() {
 		if (rand(0, 1) === 1) {
 			if (self::$wordCount === 0) {
-				$cons = self::$double_consonants[rand(0, count(self::$double_consonants)-1)];
+				$cons = self::$double_consonants_first[rand(0, count(self::$double_consonants_first) - 1)];
 			} else {
-				$cons = self::$double_consonants_any[rand(0, count(self::$double_consonants_any)-1)];
+				$cons = self::$double_consonants_any[rand(0, count(self::$double_consonants_any) - 1)];
 			}
 		} else {
-			$cons = self::$consonants[rand(0, count(self::$consonants)-1)];
+			$cons = self::$consonants[rand(0, count(self::$consonants) - 1)];
 		}
 
-		foreach (mb_str_split($cons) as $letter) {
-			if (in_array($letter, self::$rare_consonants)) {
-				if (rand(1, 100) > self::$rare_consonants_chance) {
+		if (self::$rare_consonants_chance < 100 && is_array(self::$rare_consonants) && count(self::$rare_consonants) > 0) {
+			foreach (mb_str_split($cons) as $letter) {
+				if (in_array($letter, self::$rare_consonants) && rand(1, 100) > self::$rare_consonants_chance) {
 					return self::consonant();
 				}
 			}
 		}
 		return $cons;
 	}
-
 }
