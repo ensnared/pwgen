@@ -4,38 +4,52 @@ namespace Ensnared\Password;
 
 class PW {
 	/**
-	 * @var string[]
 	 * Consonants to use. Can include locale specific letters.
+	 * @var string[]
 	 */
 	private static $consonants = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'x', 'z');
 
 	/**
-	 * @var string[]
 	 * Vowels to use. Can include locale specific letters.
+	 * @var string[]
 	 */
 	private static $vowels = array('a', 'e', 'i', 'o', 'u', 'y');
 
 	/**
-	 * @var string[]
-	 * Special characters to use.
+	 * Number of digits to add to the end of the password.
+	 * 0 or NULL = disabled
+	 * @var int
 	 */
-	private static $special = array('!', '@', '#', '$', '%', '*', '&', '*', '-', '+', '?');
+	private static $digits = 2;
 
 	/**
+	 * Number of special characters in generated password.
+	 * 0 or NULL = disabled
+	 * @var int
+	 */
+	private static $numSpecialChars = 2;
+
+	/**
+	 * Special characters to use.
 	 * @var string[]
+	 */
+	private static $specialChars = array('!', '@', '#', '$', '%', '*', '&', '*', '-', '+', '?');
+
+	/**
 	 * Map of characters that will always be replaced.
 	 * Case sensitive.
+	 * @var string[]
 	 */
-	private static $character_always_replace = array(
+	private static $alwaysReplaceChars = array(
 		'O' => '0'
 	);
 
 	/**
-	 * @var string[]
 	 * Map of characters that can be replaced.
 	 * The percentile chance of each instance being replaced is defined by $warp_chance
+	 * @var string[]
 	 */
-	private static $character_warp_map = array(
+	private static $warpCharactersMap = array(
 		'a' => '@',
 		'e' => '3',
 		'i' => '!',
@@ -48,32 +62,33 @@ class PW {
 	);
 
 	/**
-	 * @var int
 	 * The percentile chance of characters being warped using $character_warp_map
-	 */
-	private static $warp_chance = 75;
-
-	/**
-	 * @var string[]
-	 * Consonants that will have a reduced chance of being used.
-	 * The chance of these being used is defined by $rare_consonants_chance
-	 * Set to NULL or an empty array to disable.
-	 * Will also be disabled if $rare_consonants_chance is set to 100.
-	 */
-	private static $rare_consonants = array('l', 'w', 'x', 'z');
-
-	/**
 	 * @var int
-	 * The percentile chance of rare consonants being used
-	 * If set to 100 this functionality will not be used.
 	 */
-	private static $rare_consonants_chance = 30;
+	private static $warpCharactersChance = 75;
 
 	/**
+	 * Characters that will have a reduced chance of being used.
+	 * The chance of these being used is defined by $rare_characters_chance
+	 * Set to NULL or an empty array to disable.
+	 * Will also be disabled if $rare_characters_chance is set to 100.
 	 * @var string[]
-	 * Double consonants to use only at the beginning of a password
 	 */
-	private static $double_consonants_first = array(
+	private static $rareCharacters = array('l', 'q', 'w', 'x', 'z');
+
+	/**
+	 * The percentile chance of rare consonants being used
+	 * If set to 0 the characters will never be used.
+	 * If set to 100 this functionality will not be used.
+	 * @var int
+	 */
+	private static $rareCharactersChance = 30;
+
+	/**
+	 * Double consonants to use only at the beginning of a password
+	 * @var string[]
+	 */
+	private static $doubleConsonantsFirst = array(
 		'bl', 'br',
 		'cl', 'cr', 'cv',
 		'dr',
@@ -89,10 +104,10 @@ class PW {
 	);
 
 	/**
-	 * @var string[]
 	 * Double consonants to use only if previous letter is a vowel
+	 * @var string[]
 	 */
-	private static $double_consonants_postvowel = array(
+	private static $doubleConsonantsAfterVowel = array(
 		'ck',
 		'dv',
 		'fk', 'fp', 'fs', 'ft',
@@ -108,75 +123,536 @@ class PW {
 	);
 
 	/**
-	 * @var string[]
 	 * Double consonants to use anywhere
 	 * If null or empty, this will be populated by all entries from $double_consonants_first and $double_consonants_postvowel
+	 * @var string[]
 	 */
-	private static $double_consonants_any = null;
+	private static $doubleConsonantsAnywhere = null;
+
 
 	/**
+	 * Double vowels to use only at the beginning of a password
+	 * @var string[]
+	 */
+	private static $doubleVowelsFirst = array(
+		'ai', 'au', 'ay',
+		'ei', 'eu', 'ey',
+		'io', 'iu',
+		'oi',
+		'ua', 'uo',
+		'ya', 'ye', 'yo', 'yu'
+	);
+
+	/**
+	 * Double vowels to use only if previous letter is a consonant
+	 * @var string[]
+	 */
+	private static $doubleVowelsAfterConsonant = array(
+		'ia', 'ie',
+		'oe',
+		'ue', 'ui',
+	);
+
+	/**
+	 * Double vowels to use anywhere
+	 * If null or empty, this will be populated by all entries from $double_vowels_first and $double_vowels_postconsonant
+	 * @var string[]
+	 */
+	private static $doubleVowelsAnywhere = null;
+
+	/**
+	 * Password minimum length
 	 * @var int
+	 */
+	private static $minLength = 8;
+
+	/**
+	 * Password maximum length
+	 * @var int
+	 */
+	private static $maxLength = 12;
+
+	/**
+	 * Length of generated password, determined from $minLength and $maxLength
+	 * @internal
+	 * @var int
+	 */
+	private static $length = 0;
+
+	/**
 	 * The number of words created
+	 * @internal
+	 * @var int
 	 */
 	private static $wordCount = 0;
 
 	/**
-	 * @var string Generated password
+	 * Generated password
+	 * @internal
+	 * @var string
 	 */
 	private static $password = '';
+//
+//	public function __construct() {
+//		if (self::$doubleConsonantsAnywhere === null) {
+//			self::$doubleConsonantsAnywhere = array_unique(array_merge(self::$doubleConsonantsFirst, self::$doubleConsonantsAfterVowel));
+//			sort(self::$doubleConsonantsAnywhere);
+//		}
+//		if (self::$doubleVowelsAnywhere === null) {
+//			self::$doubleVowelsAnywhere = array_unique(array_merge(self::$doubleVowelsFirst, self::$doubleVowelsAfterConsonant));
+//			sort(self::$doubleVowelsAnywhere);
+//		}
+//		srand((double)microtime() * 1000000);
+//	}
+//
+//	/**
+//	 * Generate a password using current configuration.
+//	 * @return string Created password
+//	 */
+//	public function create() {
+//		self::_generate();
+//		return self::$password;
+//	}
 
 	/**
-	 * Create a password
+	 * Get list of consonants used in password creation
+	 * @return string[]
+	 */
+	public static function getConsonants(): array {
+		return self::$consonants;
+	}
+
+	/**
+	 * Set list of consonants used in password creation
+	 * @param string[]|string $consonants List of letters either as an array or a continuous string (like 'bcdfghjklmnpqrstvwxz')
+	 */
+	public static function setConsonants($consonants): void {
+		if ($consonants && !is_array($consonants)) {
+			$consonants = mb_str_split($consonants);
+		}
+		self::$consonants = $consonants;
+	}
+
+	/**
+	 * Get list of vowels used in password creation
+	 * @return string[]
+	 */
+	public static function getVowels(): array {
+		return self::$vowels;
+	}
+
+	/**
+	 * Set list of vowels used in password creation
+	 * @param string[]|string $vowels List of letters either as an array or a continuous string (like 'aeiouy')
+	 */
+	public static function setVowels($vowels): void {
+		if ($vowels && !is_array($vowels)) {
+			$vowels = mb_str_split($vowels);
+		}
+		self::$vowels = $vowels;
+	}
+
+	/**
+	 * Get number of digits to add to end of password
+	 * @return int
+	 */
+	public static function getDigits(): int {
+		return self::$digits;
+	}
+
+	/**
+	 * Set number of digits to add to end of password.
+	 * Set to 0 to disable.
+	 * @param int $digits
+	 */
+	public static function setDigits(int $digits): void {
+		self::$digits = $digits;
+	}
+
+
+	/**
+	 * Get number of special characters in a password.
+	 * @return int
+	 */
+	public static function getNumSpecialChars(): int {
+		return self::$numSpecialChars;
+	}
+
+	/**
+	 * Set number of special characters in a password.
+	 * Set to 0 to disable.
+	 * Note that any special characters defined in alwaysReplaceMap or warpCharactersMap will not be affected by disabling this, but they will counted against the number set here.
+	 * @param int $digits
+	 */
+	public static function setNumSpecialChars(int $numSpecialChars): void {
+		self::$numSpecialChars = $numSpecialChars;
+	}
+
+	/**
+	 * Get list of special characters used in password creation
+	 * @return string[]
+	 */
+	public static function getSpecialChars(): array {
+		return self::$specialChars;
+	}
+
+	/**
+	 * Set list of special characters used in password creation
+	 * @param string[]|string $specialChars
+	 */
+	public static function setSpecialChars($specialChars): void {
+		if ($specialChars && !is_array($specialChars)) {
+			$specialChars = mb_str_split($specialChars);
+		}
+		self::$specialChars = $specialChars;
+	}
+
+	/**
+	 * Get map of characters that will always be replaced.
+	 * @return string[]
+	 */
+	public static function getAlwaysReplaceChars(): array {
+		return self::$alwaysReplaceChars;
+	}
+
+	/**
+	 * Set map of characters that will always be replaced.
+	 * The default is to always replace O (capital o) with 0 (zero)
+	 * @param string[] $alwaysReplaceChars
+	 */
+	public static function setAlwaysReplaceChars(array $alwaysReplaceChars): void {
+		self::$alwaysReplaceChars = $alwaysReplaceChars;
+	}
+
+	/**
+	 * Get the map of characters being warped (replaced).
+	 * @return string[]
+	 */
+	public static function getWarpCharactersMap(): array {
+		return self::$warpCharactersMap;
+	}
+
+	/**
+	 * Set the map of characters being warped (replaced).
+	 * @param string[] $warpCharactersMap
+	 */
+	public static function setWarpCharactersMap(array $warpCharactersMap): void {
+		self::$warpCharactersMap = $warpCharactersMap;
+	}
+
+	/**
+	 * Get the percentile chance of characters being replaced as defined in $warpCharactersMap
+	 * @return int
+	 */
+	public static function getWarpCharactersChance(): int {
+		return self::$warpCharactersChance;
+	}
+
+	/**
+	 * Set the percentile chance of characters being replaced as defined in $warpCharactersMap.
+	 * Set to 0 to disable warping, set to 100 to always warp.
+	 * @param int $warpCharactersChance
+	 */
+	public static function setWarpCharactersChance(int $warpCharactersChance): void {
+		self::$warpCharactersChance = $warpCharactersChance;
+	}
+
+	/**
+	 * Get the list of rare characters that only has a percentage chance of being used.
+	 * @return string[]
+	 */
+	public static function getRareCharacters(): array {
+		return self::$rareCharacters;
+	}
+
+	/**
+	 * Set the list of rare characters that only has a percentage chance of being used.
+	 * @param string[]|string $rareCharacters List of letters either as an array or a continuous string (like 'lqwxz')
+	 */
+	public static function setRareCharacters($rareCharacters): void {
+		if ($rareCharacters && !is_array($rareCharacters)) {
+			$rareCharacters = mb_str_split($rareCharacters);
+		}
+		self::$rareCharacters = $rareCharacters;
+	}
+
+	/**
+	 * Get the chance of rare characters being used
+	 * @return int
+	 */
+	public static function getRareCharactersChance(): int {
+		return self::$rareCharactersChance;
+	}
+
+	/**
+	 * Set the percentile chance of rare characters being used.
+	 * Set to 0 to prevent rare characters from ever being used.
+	 * Set to 100 to disable the functionality.
+	 * @param int $rareCharactersChance
+	 */
+	public static function setRareCharactersChance(int $rareCharactersChance): void {
+		self::$rareCharactersChance = $rareCharactersChance;
+	}
+
+	/**
+	 * Get the list of double consonants that will only be used in the beginning of a password.
+	 * @return string[]
+	 */
+	public static function getDoubleConsonantsFirst(): array {
+		return self::$doubleConsonantsFirst;
+	}
+
+	/**
+	 * Set the list of double consonants that will only be used in the beginning of a password.
+	 * @param string[] $doubleConsonantsFirst List of double letters either as an array or a space separated string (like 'bl br cl')
+	 */
+	public static function setDoubleConsonantsFirst(array $doubleConsonantsFirst): void {
+		if (!is_array($doubleConsonantsFirst)) {
+			$doubleConsonantsFirst = explode(' ', $doubleConsonantsFirst);
+		}
+		self::$doubleConsonantsFirst = $doubleConsonantsFirst;
+	}
+
+	/**
+	 * Get the list of double consonants that will only be used after a vowel in a password.
+	 * @return string[]
+	 */
+	public static function getDoubleConsonantsAfterVowel(): array {
+		return self::$doubleConsonantsAfterVowel;
+	}
+
+	/**
+	 * Set the list of double consonants that will only be used after a vowel in a password.
+	 * @param string[] $doubleConsonantsAfterVowel List of double letters either as an array or a space separated string (like 'bl br cl')
+	 */
+	public static function setDoubleConsonantsAfterVowel(array $doubleConsonantsAfterVowel): void {
+		if (!is_array($doubleConsonantsAfterVowel)) {
+			$doubleConsonantsAfterVowel = explode(' ', $doubleConsonantsAfterVowel);
+		}
+		self::$doubleConsonantsAfterVowel = $doubleConsonantsAfterVowel;
+	}
+
+	/**
+	 * Get the list of double consonants that can be used anywhere in a password.
+	 * @return string[]
+	 */
+	public static function getDoubleConsonantsAnywhere(): ?array {
+		return self::$doubleConsonantsAnywhere;
+	}
+
+	/**
+	 * Set the list of double consonants that can be used anywhere in a password.
+	 * If this is not set, it will be populated by all entries in $doubleConsonantsAfterVowel and $doubleConsonantsAnywhere
+	 * @param string[]|string $doubleConsonantsAnywhere List of double letters either as an array or a space separated string (like 'bl br cl')
+	 */
+	public static function setDoubleConsonantsAnywhere($doubleConsonantsAnywhere): void {
+		if (!$doubleConsonantsAnywhere) {
+			$doubleConsonantsAnywhere = array_unique(array_merge(self::$doubleConsonantsFirst, self::$doubleConsonantsAfterVowel));
+		} else {
+			if (!is_array($doubleConsonantsAnywhere)) {
+				$doubleConsonantsAnywhere = explode(' ', $doubleConsonantsAnywhere);
+			}
+		}
+		sort($doubleConsonantsAnywhere);
+		self::$doubleConsonantsAnywhere = $doubleConsonantsAnywhere;
+	}
+
+	/**
+	 * Get the list of double vowels that will only be used in the beginning of a password.
+	 * @return string[]
+	 */
+	public static function getDoubleVowelsFirst(): array {
+		return self::$doubleVowelsFirst;
+	}
+
+	/**
+	 * Set the list of double vowels that will only be used in the beginning of a password.
+	 * @param string[] $doubleVowelsFirst List of double letters either as an array or a space separated string (like 'ai au eu')
+	 */
+	public static function setDoubleVowelsFirst(array $doubleVowelsFirst): void {
+		if (!is_array($doubleVowelsFirst)) {
+			$doubleVowelsFirst = explode(' ', $doubleVowelsFirst);
+		}
+		self::$doubleVowelsFirst = $doubleVowelsFirst;
+	}
+
+	/**
+	 * Get the list of double vowels that will only be used after a consonant in a password.
+	 * @return string[]
+	 */
+	public static function getDoubleVowelsAfterConsonant(): array {
+		return self::$doubleVowelsAfterConsonant;
+	}
+
+	/**
+	 * Set the list of double vowels that will only be used after a consonant in a password.
+	 * @param string[] $doubleVowelsAfterConsonant List of double letters either as an array or a space separated string (like 'ai au eu')
+	 */
+	public static function setDoubleVowelsAfterConsonant(array $doubleVowelsAfterConsonant): void {
+		if (!is_array($doubleVowelsAfterConsonant)) {
+			$doubleVowelsAfterConsonant = explode(' ', $doubleVowelsAfterConsonant);
+		}
+		self::$doubleVowelsAfterConsonant = $doubleVowelsAfterConsonant;
+	}
+
+	/**
+	 * Get the list of double vowels that can be used anywhere in a password.
+	 * @return string[]
+	 */
+	public static function getDoubleVowelsAnywhere(): ?array {
+		return self::$doubleVowelsAnywhere;
+	}
+
+	/**
+	 * Set the list of double vowels that can be used anywhere in a password.
+	 * If this is not set, it will be populated by all entries in $doubleVowelsAfterConsonant and $doubleVowelsAnywhere
+	 * @param string[]|string $doubleVowelsAnywhere List of double letters either as an array or a space separated string (like 'ai au eu')
+	 */
+	public static function setDoubleVowelsAnywhere($doubleVowelsAnywhere): void {
+		if (!$doubleVowelsAnywhere) {
+			$doubleVowelsAnywhere = array_unique(array_merge(self::$doubleVowelsFirst, self::$doubleVowelsAfterConsonant));
+		} else {
+			if (!is_array($doubleVowelsAnywhere)) {
+				$doubleVowelsAnywhere = explode(' ', $doubleVowelsAnywhere);
+			}
+		}
+		sort($doubleVowelsAnywhere);
+		self::$doubleVowelsAnywhere = $doubleVowelsAnywhere;
+	}
+
+	/**
+	 * Get the minimum length of generated passwords
+	 * @return int
+	 */
+	public static function getMinLength(): int {
+		return self::$minLength;
+	}
+
+	/**
+	 * Set the minimum length of generated passwords.
+	 * Default is 8.
+	 * @param int $minLength
+	 */
+	public static function setMinLength(int $minLength = 8): void {
+		if ($minLength > self::$maxLength) {
+			throw new \Exception('Minimum length ('.$minLength.') cannot be larger than maximum length ('.self::$maxLength.')');
+		}
+		self::$minLength = $minLength;
+	}
+
+	/**
+	 * Set the maximum length of generated passwords.
+	 * @return int
+	 */
+	public static function getMaxLength(): int {
+		return self::$maxLength;
+	}
+
+	/**
+	 * Set the maximum length of generated passwords.
+	 * Default is 12.
+	 * @param int $maxLength
+	 */
+	public static function setMaxLength(int $maxLength = 12): void {
+		if ($maxLength < self::$minLength) {
+			throw new \Exception('Maximum length ('.$maxLength.') cannot be smaller than minimum length ('.self::$minLength.')');
+		}
+		self::$maxLength = $maxLength;
+	}
+
+	/**
+	 * Static method to create a password using default configuration.
 	 *
+	 * @param int $minLength Optional minimum password length, default 8
+	 * @param int $maxLength Optional maximum password length, default 12
 	 * @return string The generated pronounceable password.
 	 */
 	public static function create($minLength = 8, $maxLength = 12) {
-		if (self::$double_consonants_any === null) {
-			self::$double_consonants_any = array_unique(array_merge(self::$double_consonants_first, self::$double_consonants_postvowel));
+		if (self::$doubleConsonantsAnywhere === null) {
+			self::$doubleConsonantsAnywhere = array_unique(array_merge(self::$doubleConsonantsFirst, self::$doubleConsonantsAfterVowel));
+			sort(self::$doubleConsonantsAnywhere);
+		}
+		if (self::$doubleVowelsAnywhere === null) {
+			self::$doubleVowelsAnywhere = array_unique(array_merge(self::$doubleVowelsFirst, self::$doubleVowelsAfterConsonant));
+			sort(self::$doubleVowelsAnywhere);
 		}
 		srand((double)microtime() * 1000000);
-
-		$length = rand($minLength, $maxLength);
-
-		while (mb_strlen(self::$password) < $length - 2) {
-			self::$password .= self::word();
-			self::$wordCount++;
-		}
-
-		$letters = mb_str_split(self::$password);
-//		echo self::$password.PHP_EOL;
-		$warpedPw = array();
-		$numcount = 0;
-		$specialcount = 0;
-		foreach ($letters as $letter) {
-			if (isset(self::$character_always_replace[$letter])) {
-				$warped = self::$character_always_replace[$letter];
-			} elseif (count($warpedPw) !== 0 && isset(self::$character_warp_map[mb_strtolower($letter)]) && rand(1, 100) > self::$warp_chance) {
-				$warped = self::$character_warp_map[mb_strtolower($letter)];
-			} else {
-				$warped = $letter;
-			}
-			if (is_numeric($warped)) {
-				$numcount++;
-			} elseif (in_array($warped, self::$special)) {
-				$specialcount++;
-			}
-			$warpedPw[] = $warped;
-		}
-		self::$password = implode('', $warpedPw);
-
-		if ($specialcount < 1) {
-			self::$password .= self::$special[rand(0, count(self::$special) - 1)];
-		}
-		self::$password .= rand(10, 99);
-
+		self::$minLength = $minLength;
+		self::$maxLength = $maxLength >= $minLength ? $maxLength : $minLength;
+		self::_generate();
 		return self::$password;
 	}
 
 	/**
+	 * The actual generator, used both by the instance and static methods for creation
+	 * @internal
+	 */
+	private static function _generate() {
+		self::$length = rand(self::$minLength, self::$maxLength);
+		$wordLength = self::$length;
+		if (self::$digits) {
+			$wordLength -= self::$digits;
+		}
+		self::$password = '';
+
+		while (mb_strlen(self::$password) < $wordLength) {
+			self::$password .= self::word();
+			self::$wordCount++;
+		}
+		self::$password = mb_substr(self::$password, 0, $wordLength);
+
+		if (self::$warpCharactersChance > 0) {
+			self::$password = self::warp();
+		}
+
+		if (is_array(self::$specialChars) && count(self::$specialChars) > 0) {
+			self::special();
+		}
+
+		if (self::$digits) {
+			self::digits();
+		}
+
+		if (mb_strlen(self::$password) > self::$maxLength) {
+			if (!self::shorten()) {
+				echo 'Can not remove from ' . self::$password . PHP_EOL;
+				self::_generate();
+			}
+		}
+	}
+
+	/**
+	 * Shorten password to $maxLength by removing one letter of a double consonant or double vowel
+	 * @internal
+	 */
+	private static function shorten() {
+		$chars = array_reverse(mb_str_split(self::$password));
+		$prevType = null;
+		foreach ($chars as $n => $char) {
+			if (in_array($char, self::$consonants)) {
+				if ($prevType === 'c') {
+					unset($chars[$n]);
+					self::$password = implode('', array_reverse($chars));
+					return true;
+				}
+				$prevType = 'c';
+			} elseif (in_array($char, self::$vowels)) {
+				if ($prevType === 'v') {
+					unset($chars[$n]);
+					self::$password = implode('', array_reverse($chars));
+					return true;
+				}
+				$prevType = 'v';
+			}
+		}
+		// No double vowels of consonants to trim, return false to trigger a new password generation.
+		return false;
+	}
+
+	/**
 	 * Create a single word
-	 *
 	 * @return string
+	 * @internal
 	 */
 	private static function word() {
 		$word = '';
@@ -203,36 +679,103 @@ class PW {
 
 	/**
 	 * Create a vowel, will randomly return a vowel from the defined list of vowels.
-	 *
 	 * @return string
+	 * @internal
 	 */
 	private static function vowel() {
-		return self::$vowels[rand(0, count(self::$vowels) - 1)];
+		if (rand(0, 1) === 1) {
+			if (self::$wordCount === 0) {
+				$vowels = self::$doubleVowelsFirst[rand(0, count(self::$doubleVowelsFirst) - 1)];
+			} else {
+				$vowels = self::$doubleVowelsAnywhere[rand(0, count(self::$doubleVowelsAnywhere) - 1)];
+			}
+		} else {
+			$vowels = self::$vowels[rand(0, count(self::$vowels) - 1)];
+		}
+
+		if (self::$rareCharactersChance < 100 && is_array(self::$rareCharacters) && count(self::$rareCharacters) > 0) {
+			foreach (mb_str_split($vowels) as $letter) {
+				if (in_array($letter, self::$rareCharacters) && rand(1, 100) > self::$rareCharactersChance) {
+					return self::vowel();
+				}
+			}
+		}
+		return $vowels;
 	}
 
 	/**
 	 * Create a consonant, will randomly return a consonant or a double consonant.
-	 *
 	 * @return string
+	 * @internal
 	 */
 	private static function consonant() {
 		if (rand(0, 1) === 1) {
 			if (self::$wordCount === 0) {
-				$cons = self::$double_consonants_first[rand(0, count(self::$double_consonants_first) - 1)];
+				$cons = self::$doubleConsonantsFirst[rand(0, count(self::$doubleConsonantsFirst) - 1)];
 			} else {
-				$cons = self::$double_consonants_any[rand(0, count(self::$double_consonants_any) - 1)];
+				$cons = self::$doubleConsonantsAnywhere[rand(0, count(self::$doubleConsonantsAnywhere) - 1)];
 			}
 		} else {
 			$cons = self::$consonants[rand(0, count(self::$consonants) - 1)];
 		}
 
-		if (self::$rare_consonants_chance < 100 && is_array(self::$rare_consonants) && count(self::$rare_consonants) > 0) {
+		if (self::$rareCharactersChance < 100 && is_array(self::$rareCharacters) && count(self::$rareCharacters) > 0) {
 			foreach (mb_str_split($cons) as $letter) {
-				if (in_array($letter, self::$rare_consonants) && rand(1, 100) > self::$rare_consonants_chance) {
+				if (in_array($letter, self::$rareCharacters) && rand(1, 100) > self::$rareCharactersChance) {
 					return self::consonant();
 				}
 			}
 		}
 		return $cons;
+	}
+
+	/**
+	 * Warp the password using $character_always_replace, $character_warp_map and $warp_chance
+	 * @return string The warped password
+	 * @internal
+	 */
+	private static function warp() {
+		$letters = mb_str_split(self::$password);
+		$warpedPw = array();
+		foreach ($letters as $letter) {
+			if (isset(self::$alwaysReplaceChars[$letter])) {
+				$warped = self::$alwaysReplaceChars[$letter];
+			} elseif (count($warpedPw) !== 0 && isset(self::$warpCharactersMap[mb_strtolower($letter)]) && rand(0, 100) < self::$warpCharactersChance) {
+				$warped = self::$warpCharactersMap[mb_strtolower($letter)];
+			} else {
+				$warped = $letter;
+			}
+			$warpedPw[] = $warped;
+		}
+		return implode('', $warpedPw);
+	}
+
+	/**
+	 * Add a special character to the password
+	 * @internal
+	 */
+	private static function special() {
+		$letters = mb_str_split(self::$password);
+		$specialCount = 0;
+		foreach ($letters as $letter) {
+			if (in_array($letter, self::$specialChars)) {
+				$specialCount++;
+			}
+		}
+
+		while ($specialCount < self::$numSpecialChars) {
+			self::$password .= self::$specialChars[rand(0, count(self::$specialChars) - 1)];
+			$specialCount++;
+		}
+	}
+
+	/**
+	 * Add digits to the password
+	 * @internal
+	 */
+	private static function digits() {
+		for ($i = 1; $i <= self::$digits; $i++) {
+			self::$password .= rand(0, 9);
+		}
 	}
 }

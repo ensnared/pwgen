@@ -1,3 +1,5 @@
 .idea/**
-composer.phar
+.phpdoc
+*.phar
 /vendor/
+test.php
