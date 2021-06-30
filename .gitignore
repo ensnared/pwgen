@@ -1,5 +1,4 @@
 .idea/**
-*.lock
 .phpdoc
 *.phar
 /vendor/
