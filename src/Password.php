@@ -33,7 +33,7 @@ class Password {
 	 * Special characters to use.
 	 * @var string[]
 	 */
-	private static $specialChars = array('!', '@', '#', '$', '%', '*', '&', '*', '-', '+', '?');
+	private static $specialChars = array('!', '@', '#', '$', '%', '&', '*', '-', '+', '?');
 
 	/**
 	 * Map of characters that will always be replaced.

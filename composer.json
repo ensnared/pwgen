@@ -1,7 +1,8 @@
 {
 	"name": "ensnared/pwgen",
-	"description": "Generate pronouncable random password",
+	"description": "Generate pronounceable random password",
 	"type": "library",
+	"homepage": "https://github.com/ensnared/pwgen",
 	"license": "MIT",
 	"authors": [
 		{
@@ -13,5 +14,10 @@
 	"require": {
 		"php": ">=7.4",
 		"ext-mbstring": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"ensnared\\pwgen\\": "src"
+		}
 	}
 }
