@@ -1,46 +1,48 @@
 <?php
 
-namespace Ensnared\PwGen;
+namespace ensnared\pwgen;
+
+use Exception;
 
 class Password {
 	/**
 	 * Consonants to use. Can include locale specific letters.
 	 * @var string[]
 	 */
-	private static $consonants = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'x', 'z');
+	private static ?array $consonants = array('b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'r', 's', 't', 'v', 'w', 'x', 'z');
 
 	/**
 	 * Vowels to use. Can include locale specific letters.
 	 * @var string[]
 	 */
-	private static $vowels = array('a', 'e', 'i', 'o', 'u', 'y');
+	private static ?array $vowels = array('a', 'e', 'i', 'o', 'u', 'y');
 
 	/**
 	 * Number of digits to add to the end of the password.
 	 * 0 or NULL = disabled
 	 * @var int
 	 */
-	private static $digits = 2;
+	private static int $digits = 2;
 
 	/**
 	 * Number of special characters in generated password.
 	 * 0 or NULL = disabled
 	 * @var int
 	 */
-	private static $numSpecialChars = 2;
+	private static int $numSpecialChars = 2;
 
 	/**
 	 * Special characters to use.
 	 * @var string[]
 	 */
-	private static $specialChars = array('!', '@', '#', '$', '%', '&', '*', '-', '+', '?');
+	private static ?array $specialChars = array('!', '@', '#', '$', '%', '&', '*', '-', '+', '?');
 
 	/**
 	 * Map of characters that will always be replaced.
 	 * Case sensitive.
 	 * @var string[]
 	 */
-	private static $alwaysReplaceChars = array(
+	private static ?array $alwaysReplaceChars = array(
 		'O' => '0'
 	);
 
@@ -49,7 +51,7 @@ class Password {
 	 * The percentile chance of each instance being replaced is defined by $warp_chance
 	 * @var string[]
 	 */
-	private static $warpCharactersMap = array(
+	private static ?array $warpCharactersMap = array(
 		'a' => '@',
 		'e' => '3',
 		'i' => '!',
@@ -65,7 +67,7 @@ class Password {
 	 * The percentile chance of characters being warped using $character_warp_map
 	 * @var int
 	 */
-	private static $warpCharactersChance = 75;
+	private static int $warpCharactersChance = 75;
 
 	/**
 	 * Characters that will have a reduced chance of being used.
@@ -74,7 +76,7 @@ class Password {
 	 * Will also be disabled if $rare_characters_chance is set to 100.
 	 * @var string[]
 	 */
-	private static $rareCharacters = array('l', 'q', 'w', 'x', 'z');
+	private static ?array $rareCharacters = array('l', 'q', 'w', 'x', 'z');
 
 	/**
 	 * The percentile chance of rare consonants being used
@@ -82,13 +84,13 @@ class Password {
 	 * If set to 100 this functionality will not be used.
 	 * @var int
 	 */
-	private static $rareCharactersChance = 30;
+	private static int $rareCharactersChance = 30;
 
 	/**
 	 * Double consonants to use only at the beginning of a password
 	 * @var string[]
 	 */
-	private static $doubleConsonantsFirst = array(
+	private static ?array $doubleConsonantsFirst = array(
 		'bl', 'br',
 		'cl', 'cr', 'cv',
 		'dr',
@@ -107,7 +109,7 @@ class Password {
 	 * Double consonants to use only if previous letter is a vowel
 	 * @var string[]
 	 */
-	private static $doubleConsonantsAfterVowel = array(
+	private static ?array $doubleConsonantsAfterVowel = array(
 		'ck',
 		'dv',
 		'fk', 'fp', 'fs', 'ft',
@@ -127,14 +129,14 @@ class Password {
 	 * If null or empty, this will be populated by all entries from $double_consonants_first and $double_consonants_postvowel
 	 * @var string[]
 	 */
-	private static $doubleConsonantsAnywhere = null;
+	private static ?array $doubleConsonantsAnywhere = null;
 
 
 	/**
 	 * Double vowels to use only at the beginning of a password
 	 * @var string[]
 	 */
-	private static $doubleVowelsFirst = array(
+	private static ?array $doubleVowelsFirst = array(
 		'ai', 'au', 'ay',
 		'ei', 'eu', 'ey',
 		'io', 'iu',
@@ -147,7 +149,7 @@ class Password {
 	 * Double vowels to use only if previous letter is a consonant
 	 * @var string[]
 	 */
-	private static $doubleVowelsAfterConsonant = array(
+	private static ?array $doubleVowelsAfterConsonant = array(
 		'ia', 'ie',
 		'oe',
 		'ue', 'ui',
@@ -158,61 +160,40 @@ class Password {
 	 * If null or empty, this will be populated by all entries from $double_vowels_first and $double_vowels_postconsonant
 	 * @var string[]
 	 */
-	private static $doubleVowelsAnywhere = null;
+	private static ?array $doubleVowelsAnywhere = null;
 
 	/**
 	 * Password minimum length
 	 * @var int
 	 */
-	private static $minLength = 8;
+	private static int $minLength = 8;
 
 	/**
 	 * Password maximum length
 	 * @var int
 	 */
-	private static $maxLength = 12;
+	private static int $maxLength = 12;
 
 	/**
 	 * Length of generated password, determined from $minLength and $maxLength
 	 * @internal
 	 * @var int
 	 */
-	private static $length = 0;
+	private static int $length = 0;
 
 	/**
 	 * The number of words created
 	 * @internal
 	 * @var int
 	 */
-	private static $wordCount = 0;
+	private static int $wordCount = 0;
 
 	/**
 	 * Generated password
 	 * @internal
 	 * @var string
 	 */
-	private static $password = '';
-//
-//	public function __construct() {
-//		if (self::$doubleConsonantsAnywhere === null) {
-//			self::$doubleConsonantsAnywhere = array_unique(array_merge(self::$doubleConsonantsFirst, self::$doubleConsonantsAfterVowel));
-//			sort(self::$doubleConsonantsAnywhere);
-//		}
-//		if (self::$doubleVowelsAnywhere === null) {
-//			self::$doubleVowelsAnywhere = array_unique(array_merge(self::$doubleVowelsFirst, self::$doubleVowelsAfterConsonant));
-//			sort(self::$doubleVowelsAnywhere);
-//		}
-//		srand((double)microtime() * 1000000);
-//	}
-//
-//	/**
-//	 * Generate a password using current configuration.
-//	 * @return string Created password
-//	 */
-//	public function create() {
-//		self::_generate();
-//		return self::$password;
-//	}
+	private static string $password = '';
 
 	/**
 	 * Get list of consonants used in password creation
@@ -282,7 +263,7 @@ class Password {
 	 * Set number of special characters in a password.
 	 * Set to 0 to disable.
 	 * Note that any special characters defined in alwaysReplaceMap or warpCharactersMap will not be affected by disabling this, but they will counted against the number set here.
-	 * @param int $digits
+	 * @param int $numSpecialChars
 	 */
 	public static function setNumSpecialChars(int $numSpecialChars): void {
 		self::$numSpecialChars = $numSpecialChars;
@@ -404,9 +385,9 @@ class Password {
 
 	/**
 	 * Set the list of double consonants that will only be used in the beginning of a password.
-	 * @param string[] $doubleConsonantsFirst List of double letters either as an array or a space separated string (like 'bl br cl')
+	 * @param string[]|string $doubleConsonantsFirst List of double letters either as an array or a space separated string (like 'bl br cl')
 	 */
-	public static function setDoubleConsonantsFirst(array $doubleConsonantsFirst): void {
+	public static function setDoubleConsonantsFirst($doubleConsonantsFirst): void {
 		if (!is_array($doubleConsonantsFirst)) {
 			$doubleConsonantsFirst = explode(' ', $doubleConsonantsFirst);
 		}
@@ -423,9 +404,9 @@ class Password {
 
 	/**
 	 * Set the list of double consonants that will only be used after a vowel in a password.
-	 * @param string[] $doubleConsonantsAfterVowel List of double letters either as an array or a space separated string (like 'bl br cl')
+	 * @param string[]|string $doubleConsonantsAfterVowel List of double letters either as an array or a space separated string (like 'bl br cl')
 	 */
-	public static function setDoubleConsonantsAfterVowel(array $doubleConsonantsAfterVowel): void {
+	public static function setDoubleConsonantsAfterVowel($doubleConsonantsAfterVowel): void {
 		if (!is_array($doubleConsonantsAfterVowel)) {
 			$doubleConsonantsAfterVowel = explode(' ', $doubleConsonantsAfterVowel);
 		}
@@ -467,9 +448,9 @@ class Password {
 
 	/**
 	 * Set the list of double vowels that will only be used in the beginning of a password.
-	 * @param string[] $doubleVowelsFirst List of double letters either as an array or a space separated string (like 'ai au eu')
+	 * @param string[]|string $doubleVowelsFirst List of double letters either as an array or a space separated string (like 'ai au eu')
 	 */
-	public static function setDoubleVowelsFirst(array $doubleVowelsFirst): void {
+	public static function setDoubleVowelsFirst($doubleVowelsFirst): void {
 		if (!is_array($doubleVowelsFirst)) {
 			$doubleVowelsFirst = explode(' ', $doubleVowelsFirst);
 		}
@@ -486,9 +467,9 @@ class Password {
 
 	/**
 	 * Set the list of double vowels that will only be used after a consonant in a password.
-	 * @param string[] $doubleVowelsAfterConsonant List of double letters either as an array or a space separated string (like 'ai au eu')
+	 * @param string[]|string $doubleVowelsAfterConsonant List of double letters either as an array or a space separated string (like 'ai au eu')
 	 */
-	public static function setDoubleVowelsAfterConsonant(array $doubleVowelsAfterConsonant): void {
+	public static function setDoubleVowelsAfterConsonant($doubleVowelsAfterConsonant): void {
 		if (!is_array($doubleVowelsAfterConsonant)) {
 			$doubleVowelsAfterConsonant = explode(' ', $doubleVowelsAfterConsonant);
 		}
@@ -532,10 +513,11 @@ class Password {
 	 * Set the minimum length of generated passwords.
 	 * Default is 8.
 	 * @param int $minLength
+	 * @throws Exception
 	 */
 	public static function setMinLength(int $minLength = 8): void {
 		if ($minLength > self::$maxLength) {
-			throw new \Exception('Minimum length ('.$minLength.') cannot be larger than maximum length ('.self::$maxLength.')');
+			throw new Exception('Minimum length ('.$minLength.') cannot be larger than maximum length ('.self::$maxLength.')');
 		}
 		self::$minLength = $minLength;
 	}
@@ -552,10 +534,11 @@ class Password {
 	 * Set the maximum length of generated passwords.
 	 * Default is 12.
 	 * @param int $maxLength
+	 * @throws Exception
 	 */
 	public static function setMaxLength(int $maxLength = 12): void {
 		if ($maxLength < self::$minLength) {
-			throw new \Exception('Maximum length ('.$maxLength.') cannot be smaller than minimum length ('.self::$minLength.')');
+			throw new Exception('Maximum length ('.$maxLength.') cannot be smaller than minimum length ('.self::$minLength.')');
 		}
 		self::$maxLength = $maxLength;
 	}
@@ -567,7 +550,7 @@ class Password {
 	 * @param int $maxLength Optional maximum password length, default 12
 	 * @return string The generated pronounceable password.
 	 */
-	public static function create($minLength = 8, $maxLength = 12) {
+	public static function create(int $minLength = 8, int $maxLength = 12): string {
 		if (self::$doubleConsonantsAnywhere === null) {
 			self::$doubleConsonantsAnywhere = array_unique(array_merge(self::$doubleConsonantsFirst, self::$doubleConsonantsAfterVowel));
 			sort(self::$doubleConsonantsAnywhere);
@@ -625,7 +608,7 @@ class Password {
 	 * Shorten password to $maxLength by removing one letter of a double consonant or double vowel
 	 * @internal
 	 */
-	private static function shorten() {
+	private static function shorten(): bool {
 		$chars = array_reverse(mb_str_split(self::$password));
 		$prevType = null;
 		foreach ($chars as $n => $char) {
@@ -654,7 +637,7 @@ class Password {
 	 * @return string
 	 * @internal
 	 */
-	private static function word() {
+	private static function word(): string {
 		$word = '';
 		if (self::$wordCount === 0) {
 			// First word, 50/50 starts with vowel or consonant
@@ -662,13 +645,12 @@ class Password {
 				$word .= self::vowel();
 			}
 			$word .= self::consonant();
-			$word .= self::vowel();
 		} else {
 			if (in_array(mb_substr(self::$password, -1), self::$vowels)) {
 				$word .= self::consonant();
 			}
-			$word .= self::vowel();
 		}
+		$word .= self::vowel();
 
 		if (self::$wordCount === 0 || rand(1, 100) > 70) {
 			$word = mb_convert_case($word, MB_CASE_TITLE);
@@ -682,7 +664,7 @@ class Password {
 	 * @return string
 	 * @internal
 	 */
-	private static function vowel() {
+	private static function vowel(): string {
 		if (rand(0, 1) === 1) {
 			if (self::$wordCount === 0) {
 				$vowels = self::$doubleVowelsFirst[rand(0, count(self::$doubleVowelsFirst) - 1)];
@@ -708,7 +690,7 @@ class Password {
 	 * @return string
 	 * @internal
 	 */
-	private static function consonant() {
+	private static function consonant(): string {
 		if (rand(0, 1) === 1) {
 			if (self::$wordCount === 0) {
 				$cons = self::$doubleConsonantsFirst[rand(0, count(self::$doubleConsonantsFirst) - 1)];
@@ -734,7 +716,7 @@ class Password {
 	 * @return string The warped password
 	 * @internal
 	 */
-	private static function warp() {
+	private static function warp(): string {
 		$letters = mb_str_split(self::$password);
 		$warpedPw = array();
 		foreach ($letters as $letter) {
