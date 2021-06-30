@@ -1,295 +1,295 @@
 Search.appendIndex(
     [
                 {
-            "fqsen": "\\Ensnared\\Password\\PW",
-            "name": "PW",
+            "fqsen": "\\Ensnared\\PwGen\\Password",
+            "name": "Password",
             "summary": "",
-            "url": "classes/Ensnared-Password-PW.html"
+            "url": "classes/Ensnared-PwGen-Password.html"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetConsonants\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetConsonants\u0028\u0029",
             "name": "getConsonants",
             "summary": "Get\u0020list\u0020of\u0020consonants\u0020used\u0020in\u0020password\u0020creation",
-            "url": "classes/Ensnared-Password-PW.html#method_getConsonants"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getConsonants"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetConsonants\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetConsonants\u0028\u0029",
             "name": "setConsonants",
             "summary": "Set\u0020list\u0020of\u0020consonants\u0020used\u0020in\u0020password\u0020creation",
-            "url": "classes/Ensnared-Password-PW.html#method_setConsonants"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setConsonants"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetVowels\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetVowels\u0028\u0029",
             "name": "getVowels",
             "summary": "Get\u0020list\u0020of\u0020vowels\u0020used\u0020in\u0020password\u0020creation",
-            "url": "classes/Ensnared-Password-PW.html#method_getVowels"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getVowels"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetVowels\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetVowels\u0028\u0029",
             "name": "setVowels",
             "summary": "Set\u0020list\u0020of\u0020vowels\u0020used\u0020in\u0020password\u0020creation",
-            "url": "classes/Ensnared-Password-PW.html#method_setVowels"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setVowels"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetDigits\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetDigits\u0028\u0029",
             "name": "getDigits",
             "summary": "Get\u0020number\u0020of\u0020digits\u0020to\u0020add\u0020to\u0020end\u0020of\u0020password",
-            "url": "classes/Ensnared-Password-PW.html#method_getDigits"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getDigits"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetDigits\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetDigits\u0028\u0029",
             "name": "setDigits",
             "summary": "Set\u0020number\u0020of\u0020digits\u0020to\u0020add\u0020to\u0020end\u0020of\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_setDigits"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setDigits"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetNumSpecialChars\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetNumSpecialChars\u0028\u0029",
             "name": "getNumSpecialChars",
             "summary": "Get\u0020number\u0020of\u0020special\u0020characters\u0020in\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_getNumSpecialChars"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getNumSpecialChars"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetNumSpecialChars\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetNumSpecialChars\u0028\u0029",
             "name": "setNumSpecialChars",
             "summary": "Set\u0020number\u0020of\u0020special\u0020characters\u0020in\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_setNumSpecialChars"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setNumSpecialChars"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetSpecialChars\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetSpecialChars\u0028\u0029",
             "name": "getSpecialChars",
             "summary": "Get\u0020list\u0020of\u0020special\u0020characters\u0020used\u0020in\u0020password\u0020creation",
-            "url": "classes/Ensnared-Password-PW.html#method_getSpecialChars"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getSpecialChars"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetSpecialChars\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetSpecialChars\u0028\u0029",
             "name": "setSpecialChars",
             "summary": "Set\u0020list\u0020of\u0020special\u0020characters\u0020used\u0020in\u0020password\u0020creation",
-            "url": "classes/Ensnared-Password-PW.html#method_setSpecialChars"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setSpecialChars"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetAlwaysReplaceChars\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetAlwaysReplaceChars\u0028\u0029",
             "name": "getAlwaysReplaceChars",
             "summary": "Get\u0020map\u0020of\u0020characters\u0020that\u0020will\u0020always\u0020be\u0020replaced.",
-            "url": "classes/Ensnared-Password-PW.html#method_getAlwaysReplaceChars"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getAlwaysReplaceChars"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetAlwaysReplaceChars\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetAlwaysReplaceChars\u0028\u0029",
             "name": "setAlwaysReplaceChars",
             "summary": "Set\u0020map\u0020of\u0020characters\u0020that\u0020will\u0020always\u0020be\u0020replaced.",
-            "url": "classes/Ensnared-Password-PW.html#method_setAlwaysReplaceChars"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setAlwaysReplaceChars"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetWarpCharactersMap\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetWarpCharactersMap\u0028\u0029",
             "name": "getWarpCharactersMap",
             "summary": "Get\u0020the\u0020map\u0020of\u0020characters\u0020being\u0020warped\u0020\u0028replaced\u0029.",
-            "url": "classes/Ensnared-Password-PW.html#method_getWarpCharactersMap"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getWarpCharactersMap"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetWarpCharactersMap\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetWarpCharactersMap\u0028\u0029",
             "name": "setWarpCharactersMap",
             "summary": "Set\u0020the\u0020map\u0020of\u0020characters\u0020being\u0020warped\u0020\u0028replaced\u0029.",
-            "url": "classes/Ensnared-Password-PW.html#method_setWarpCharactersMap"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setWarpCharactersMap"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetWarpCharactersChance\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetWarpCharactersChance\u0028\u0029",
             "name": "getWarpCharactersChance",
             "summary": "Get\u0020the\u0020percentile\u0020chance\u0020of\u0020characters\u0020being\u0020replaced\u0020as\u0020defined\u0020in\u0020\u0024warpCharactersMap",
-            "url": "classes/Ensnared-Password-PW.html#method_getWarpCharactersChance"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getWarpCharactersChance"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetWarpCharactersChance\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetWarpCharactersChance\u0028\u0029",
             "name": "setWarpCharactersChance",
             "summary": "Set\u0020the\u0020percentile\u0020chance\u0020of\u0020characters\u0020being\u0020replaced\u0020as\u0020defined\u0020in\u0020\u0024warpCharactersMap.",
-            "url": "classes/Ensnared-Password-PW.html#method_setWarpCharactersChance"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setWarpCharactersChance"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetRareCharacters\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetRareCharacters\u0028\u0029",
             "name": "getRareCharacters",
             "summary": "Get\u0020the\u0020list\u0020of\u0020rare\u0020characters\u0020that\u0020only\u0020has\u0020a\u0020percentage\u0020chance\u0020of\u0020being\u0020used.",
-            "url": "classes/Ensnared-Password-PW.html#method_getRareCharacters"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getRareCharacters"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetRareCharacters\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetRareCharacters\u0028\u0029",
             "name": "setRareCharacters",
             "summary": "Set\u0020the\u0020list\u0020of\u0020rare\u0020characters\u0020that\u0020only\u0020has\u0020a\u0020percentage\u0020chance\u0020of\u0020being\u0020used.",
-            "url": "classes/Ensnared-Password-PW.html#method_setRareCharacters"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setRareCharacters"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetRareCharactersChance\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetRareCharactersChance\u0028\u0029",
             "name": "getRareCharactersChance",
             "summary": "Get\u0020the\u0020chance\u0020of\u0020rare\u0020characters\u0020being\u0020used",
-            "url": "classes/Ensnared-Password-PW.html#method_getRareCharactersChance"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getRareCharactersChance"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetRareCharactersChance\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetRareCharactersChance\u0028\u0029",
             "name": "setRareCharactersChance",
             "summary": "Set\u0020the\u0020percentile\u0020chance\u0020of\u0020rare\u0020characters\u0020being\u0020used.",
-            "url": "classes/Ensnared-Password-PW.html#method_setRareCharactersChance"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setRareCharactersChance"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetDoubleConsonantsFirst\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetDoubleConsonantsFirst\u0028\u0029",
             "name": "getDoubleConsonantsFirst",
             "summary": "Get\u0020the\u0020list\u0020of\u0020double\u0020consonants\u0020that\u0020will\u0020only\u0020be\u0020used\u0020in\u0020the\u0020beginning\u0020of\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_getDoubleConsonantsFirst"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getDoubleConsonantsFirst"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetDoubleConsonantsFirst\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetDoubleConsonantsFirst\u0028\u0029",
             "name": "setDoubleConsonantsFirst",
             "summary": "Set\u0020the\u0020list\u0020of\u0020double\u0020consonants\u0020that\u0020will\u0020only\u0020be\u0020used\u0020in\u0020the\u0020beginning\u0020of\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_setDoubleConsonantsFirst"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setDoubleConsonantsFirst"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetDoubleConsonantsAfterVowel\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetDoubleConsonantsAfterVowel\u0028\u0029",
             "name": "getDoubleConsonantsAfterVowel",
             "summary": "Get\u0020the\u0020list\u0020of\u0020double\u0020consonants\u0020that\u0020will\u0020only\u0020be\u0020used\u0020after\u0020a\u0020vowel\u0020in\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_getDoubleConsonantsAfterVowel"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getDoubleConsonantsAfterVowel"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetDoubleConsonantsAfterVowel\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetDoubleConsonantsAfterVowel\u0028\u0029",
             "name": "setDoubleConsonantsAfterVowel",
             "summary": "Set\u0020the\u0020list\u0020of\u0020double\u0020consonants\u0020that\u0020will\u0020only\u0020be\u0020used\u0020after\u0020a\u0020vowel\u0020in\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_setDoubleConsonantsAfterVowel"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setDoubleConsonantsAfterVowel"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetDoubleConsonantsAnywhere\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetDoubleConsonantsAnywhere\u0028\u0029",
             "name": "getDoubleConsonantsAnywhere",
             "summary": "Get\u0020the\u0020list\u0020of\u0020double\u0020consonants\u0020that\u0020can\u0020be\u0020used\u0020anywhere\u0020in\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_getDoubleConsonantsAnywhere"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getDoubleConsonantsAnywhere"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetDoubleConsonantsAnywhere\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetDoubleConsonantsAnywhere\u0028\u0029",
             "name": "setDoubleConsonantsAnywhere",
             "summary": "Set\u0020the\u0020list\u0020of\u0020double\u0020consonants\u0020that\u0020can\u0020be\u0020used\u0020anywhere\u0020in\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_setDoubleConsonantsAnywhere"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setDoubleConsonantsAnywhere"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetDoubleVowelsFirst\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetDoubleVowelsFirst\u0028\u0029",
             "name": "getDoubleVowelsFirst",
             "summary": "Get\u0020the\u0020list\u0020of\u0020double\u0020vowels\u0020that\u0020will\u0020only\u0020be\u0020used\u0020in\u0020the\u0020beginning\u0020of\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_getDoubleVowelsFirst"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getDoubleVowelsFirst"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetDoubleVowelsFirst\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetDoubleVowelsFirst\u0028\u0029",
             "name": "setDoubleVowelsFirst",
             "summary": "Set\u0020the\u0020list\u0020of\u0020double\u0020vowels\u0020that\u0020will\u0020only\u0020be\u0020used\u0020in\u0020the\u0020beginning\u0020of\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_setDoubleVowelsFirst"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setDoubleVowelsFirst"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetDoubleVowelsAfterConsonant\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetDoubleVowelsAfterConsonant\u0028\u0029",
             "name": "getDoubleVowelsAfterConsonant",
             "summary": "Get\u0020the\u0020list\u0020of\u0020double\u0020vowels\u0020that\u0020will\u0020only\u0020be\u0020used\u0020after\u0020a\u0020consonant\u0020in\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_getDoubleVowelsAfterConsonant"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getDoubleVowelsAfterConsonant"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetDoubleVowelsAfterConsonant\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetDoubleVowelsAfterConsonant\u0028\u0029",
             "name": "setDoubleVowelsAfterConsonant",
             "summary": "Set\u0020the\u0020list\u0020of\u0020double\u0020vowels\u0020that\u0020will\u0020only\u0020be\u0020used\u0020after\u0020a\u0020consonant\u0020in\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_setDoubleVowelsAfterConsonant"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setDoubleVowelsAfterConsonant"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetDoubleVowelsAnywhere\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetDoubleVowelsAnywhere\u0028\u0029",
             "name": "getDoubleVowelsAnywhere",
             "summary": "Get\u0020the\u0020list\u0020of\u0020double\u0020vowels\u0020that\u0020can\u0020be\u0020used\u0020anywhere\u0020in\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_getDoubleVowelsAnywhere"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getDoubleVowelsAnywhere"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetDoubleVowelsAnywhere\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetDoubleVowelsAnywhere\u0028\u0029",
             "name": "setDoubleVowelsAnywhere",
             "summary": "Set\u0020the\u0020list\u0020of\u0020double\u0020vowels\u0020that\u0020can\u0020be\u0020used\u0020anywhere\u0020in\u0020a\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#method_setDoubleVowelsAnywhere"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setDoubleVowelsAnywhere"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetMinLength\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetMinLength\u0028\u0029",
             "name": "getMinLength",
             "summary": "Get\u0020the\u0020minimum\u0020length\u0020of\u0020generated\u0020passwords",
-            "url": "classes/Ensnared-Password-PW.html#method_getMinLength"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getMinLength"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetMinLength\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetMinLength\u0028\u0029",
             "name": "setMinLength",
             "summary": "Set\u0020the\u0020minimum\u0020length\u0020of\u0020generated\u0020passwords.",
-            "url": "classes/Ensnared-Password-PW.html#method_setMinLength"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setMinLength"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AgetMaxLength\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AgetMaxLength\u0028\u0029",
             "name": "getMaxLength",
             "summary": "Set\u0020the\u0020maximum\u0020length\u0020of\u0020generated\u0020passwords.",
-            "url": "classes/Ensnared-Password-PW.html#method_getMaxLength"
+            "url": "classes/Ensnared-PwGen-Password.html#method_getMaxLength"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003AsetMaxLength\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003AsetMaxLength\u0028\u0029",
             "name": "setMaxLength",
             "summary": "Set\u0020the\u0020maximum\u0020length\u0020of\u0020generated\u0020passwords.",
-            "url": "classes/Ensnared-Password-PW.html#method_setMaxLength"
+            "url": "classes/Ensnared-PwGen-Password.html#method_setMaxLength"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003Acreate\u0028\u0029",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003Acreate\u0028\u0029",
             "name": "create",
             "summary": "Static\u0020method\u0020to\u0020create\u0020a\u0020password\u0020using\u0020default\u0020configuration.",
-            "url": "classes/Ensnared-Password-PW.html#method_create"
+            "url": "classes/Ensnared-PwGen-Password.html#method_create"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024consonants",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024consonants",
             "name": "consonants",
             "summary": "Consonants\u0020to\u0020use.\u0020Can\u0020include\u0020locale\u0020specific\u0020letters.",
-            "url": "classes/Ensnared-Password-PW.html#property_consonants"
+            "url": "classes/Ensnared-PwGen-Password.html#property_consonants"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024vowels",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024vowels",
             "name": "vowels",
             "summary": "Vowels\u0020to\u0020use.\u0020Can\u0020include\u0020locale\u0020specific\u0020letters.",
-            "url": "classes/Ensnared-Password-PW.html#property_vowels"
+            "url": "classes/Ensnared-PwGen-Password.html#property_vowels"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024digits",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024digits",
             "name": "digits",
             "summary": "Number\u0020of\u0020digits\u0020to\u0020add\u0020to\u0020the\u0020end\u0020of\u0020the\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#property_digits"
+            "url": "classes/Ensnared-PwGen-Password.html#property_digits"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024numSpecialChars",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024numSpecialChars",
             "name": "numSpecialChars",
             "summary": "Number\u0020of\u0020special\u0020characters\u0020in\u0020generated\u0020password.",
-            "url": "classes/Ensnared-Password-PW.html#property_numSpecialChars"
+            "url": "classes/Ensnared-PwGen-Password.html#property_numSpecialChars"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024specialChars",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024specialChars",
             "name": "specialChars",
             "summary": "Special\u0020characters\u0020to\u0020use.",
-            "url": "classes/Ensnared-Password-PW.html#property_specialChars"
+            "url": "classes/Ensnared-PwGen-Password.html#property_specialChars"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024alwaysReplaceChars",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024alwaysReplaceChars",
             "name": "alwaysReplaceChars",
             "summary": "Map\u0020of\u0020characters\u0020that\u0020will\u0020always\u0020be\u0020replaced.",
-            "url": "classes/Ensnared-Password-PW.html#property_alwaysReplaceChars"
+            "url": "classes/Ensnared-PwGen-Password.html#property_alwaysReplaceChars"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024warpCharactersMap",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024warpCharactersMap",
             "name": "warpCharactersMap",
             "summary": "Map\u0020of\u0020characters\u0020that\u0020can\u0020be\u0020replaced.",
-            "url": "classes/Ensnared-Password-PW.html#property_warpCharactersMap"
+            "url": "classes/Ensnared-PwGen-Password.html#property_warpCharactersMap"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024warpCharactersChance",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024warpCharactersChance",
             "name": "warpCharactersChance",
             "summary": "The\u0020percentile\u0020chance\u0020of\u0020characters\u0020being\u0020warped\u0020using\u0020\u0024character_warp_map",
-            "url": "classes/Ensnared-Password-PW.html#property_warpCharactersChance"
+            "url": "classes/Ensnared-PwGen-Password.html#property_warpCharactersChance"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024rareCharacters",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024rareCharacters",
             "name": "rareCharacters",
             "summary": "Characters\u0020that\u0020will\u0020have\u0020a\u0020reduced\u0020chance\u0020of\u0020being\u0020used.",
-            "url": "classes/Ensnared-Password-PW.html#property_rareCharacters"
+            "url": "classes/Ensnared-PwGen-Password.html#property_rareCharacters"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024rareCharactersChance",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024rareCharactersChance",
             "name": "rareCharactersChance",
             "summary": "The\u0020percentile\u0020chance\u0020of\u0020rare\u0020consonants\u0020being\u0020used\nIf\u0020set\u0020to\u00200\u0020the\u0020characters\u0020will\u0020never\u0020be\u0020used.",
-            "url": "classes/Ensnared-Password-PW.html#property_rareCharactersChance"
+            "url": "classes/Ensnared-PwGen-Password.html#property_rareCharactersChance"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024doubleConsonantsFirst",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024doubleConsonantsFirst",
             "name": "doubleConsonantsFirst",
             "summary": "Double\u0020consonants\u0020to\u0020use\u0020only\u0020at\u0020the\u0020beginning\u0020of\u0020a\u0020password",
-            "url": "classes/Ensnared-Password-PW.html#property_doubleConsonantsFirst"
+            "url": "classes/Ensnared-PwGen-Password.html#property_doubleConsonantsFirst"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024doubleConsonantsAfterVowel",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024doubleConsonantsAfterVowel",
             "name": "doubleConsonantsAfterVowel",
             "summary": "Double\u0020consonants\u0020to\u0020use\u0020only\u0020if\u0020previous\u0020letter\u0020is\u0020a\u0020vowel",
-            "url": "classes/Ensnared-Password-PW.html#property_doubleConsonantsAfterVowel"
+            "url": "classes/Ensnared-PwGen-Password.html#property_doubleConsonantsAfterVowel"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024doubleConsonantsAnywhere",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024doubleConsonantsAnywhere",
             "name": "doubleConsonantsAnywhere",
             "summary": "Double\u0020consonants\u0020to\u0020use\u0020anywhere\nIf\u0020null\u0020or\u0020empty,\u0020this\u0020will\u0020be\u0020populated\u0020by\u0020all\u0020entries\u0020from\u0020\u0024double_consonants_first\u0020and\u0020\u0024double_consonants_postvowel",
-            "url": "classes/Ensnared-Password-PW.html#property_doubleConsonantsAnywhere"
+            "url": "classes/Ensnared-PwGen-Password.html#property_doubleConsonantsAnywhere"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024doubleVowelsFirst",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024doubleVowelsFirst",
             "name": "doubleVowelsFirst",
             "summary": "Double\u0020vowels\u0020to\u0020use\u0020only\u0020at\u0020the\u0020beginning\u0020of\u0020a\u0020password",
-            "url": "classes/Ensnared-Password-PW.html#property_doubleVowelsFirst"
+            "url": "classes/Ensnared-PwGen-Password.html#property_doubleVowelsFirst"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024doubleVowelsAfterConsonant",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024doubleVowelsAfterConsonant",
             "name": "doubleVowelsAfterConsonant",
             "summary": "Double\u0020vowels\u0020to\u0020use\u0020only\u0020if\u0020previous\u0020letter\u0020is\u0020a\u0020consonant",
-            "url": "classes/Ensnared-Password-PW.html#property_doubleVowelsAfterConsonant"
+            "url": "classes/Ensnared-PwGen-Password.html#property_doubleVowelsAfterConsonant"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024doubleVowelsAnywhere",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024doubleVowelsAnywhere",
             "name": "doubleVowelsAnywhere",
             "summary": "Double\u0020vowels\u0020to\u0020use\u0020anywhere\nIf\u0020null\u0020or\u0020empty,\u0020this\u0020will\u0020be\u0020populated\u0020by\u0020all\u0020entries\u0020from\u0020\u0024double_vowels_first\u0020and\u0020\u0024double_vowels_postconsonant",
-            "url": "classes/Ensnared-Password-PW.html#property_doubleVowelsAnywhere"
+            "url": "classes/Ensnared-PwGen-Password.html#property_doubleVowelsAnywhere"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024minLength",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024minLength",
             "name": "minLength",
             "summary": "Password\u0020minimum\u0020length",
-            "url": "classes/Ensnared-Password-PW.html#property_minLength"
+            "url": "classes/Ensnared-PwGen-Password.html#property_minLength"
         },                {
-            "fqsen": "\\Ensnared\\Password\\PW\u003A\u003A\u0024maxLength",
+            "fqsen": "\\Ensnared\\PwGen\\Password\u003A\u003A\u0024maxLength",
             "name": "maxLength",
             "summary": "Password\u0020maximum\u0020length",
-            "url": "classes/Ensnared-Password-PW.html#property_maxLength"
+            "url": "classes/Ensnared-PwGen-Password.html#property_maxLength"
         },                {
             "fqsen": "\\",
             "name": "\\",
             "summary": "",
             "url": "namespaces/default.html"
         },                {
-            "fqsen": "\\Ensnared\\Password",
-            "name": "Password",
+            "fqsen": "\\Ensnared\\PwGen",
+            "name": "PwGen",
             "summary": "",
-            "url": "namespaces/ensnared-password.html"
+            "url": "namespaces/ensnared-pwgen.html"
         },                {
             "fqsen": "\\Ensnared",
             "name": "Ensnared",

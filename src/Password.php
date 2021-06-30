@@ -1,8 +1,8 @@
 <?php
 
-namespace Ensnared\Password;
+namespace Ensnared\PwGen;
 
-class PW {
+class Password {
 	/**
 	 * Consonants to use. Can include locale specific letters.
 	 * @var string[]
