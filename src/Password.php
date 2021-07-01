@@ -598,7 +598,7 @@ class Password {
 
 		if (mb_strlen(self::$password) > self::$maxLength) {
 			if (!self::shorten()) {
-				echo 'Can not remove from ' . self::$password . PHP_EOL;
+				// No way to reliably shorten the password, generate a new one and start over.
 				self::_generate();
 			}
 		}
