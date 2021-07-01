@@ -13,8 +13,11 @@ composer require ensnared/pwgen
 ## Usage
 To create a password with default settings, simply use `Password::create();`.
 
+By default, the passwords generated will be between 8 and 12 characters long, and will include at least 2 special characters and 2 digits.
+
 ## Configuration
-The behaviour can be configured with the following methods:
+The behaviour can be configured with the methods below. All these methods also have an equivalent get-method.
+
 - `Password::setConsonants()`
     - Set list of consonants used in password creation.
     - Default is all consonants in the english alphabet.
@@ -61,7 +64,7 @@ The behaviour can be configured with the following methods:
     - Set list of vowels used in password creation
     - Default is all vowels in the english alphabet.
 - `Password::setWarpCharactersChance()`
-    - Set the percentile chance of characters being replaced as defined in $warpCharactersMap.
+    - Set the percentile chance of characters being replaced as defined by `getWarpCharactersMap()`.
     - Default is 75.
     - Set to 0 to disable warping.
     - Set to 100 to always warp.
