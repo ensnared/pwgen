@@ -1,6 +1,8 @@
 # PHP Pronounceable Password Generator
 ## Description
-This is a simple library for creating pronounceable passwords, optionally with special characters and numbers.
+This is a simple class for creating random pronounceable passwords. By default it also uses special characters and numbers, but this can be disabled. One can also customize the letter combinations that are allowed, as well as character replacements.
+
+**Note:** This class is not based on, nor does it have anything to do with, other similar projects with the same name.
 
 ## Installation
 Install with composer:
