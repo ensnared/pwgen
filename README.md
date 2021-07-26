@@ -4,6 +4,10 @@ This is a simple class for creating random pronounceable passwords. By default i
 
 **Note:** This class is not based on, nor does it have anything to do with, other similar projects with the same name.
 
+## Requirements
+* PHP 7.4 or newer
+* mbstring extension
+
 ## Installation
 Install with composer:
 ```bash
